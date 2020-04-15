@@ -1,0 +1,124 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap");
+
+:root {
+  --max-width: 960px;
+
+  --base-font-size: 16px;
+  --base-font-size-mobile: 1.0625rem;
+  --font-size-small: 0.875rem;
+  --font-size-large: 1.125rem;
+  --font-size-h1: 2.8125rem;
+  --font-size-h1-tablet: 2rem;
+  --font-size-h1-mobile: 1.75rem;
+  --font-size-h2: 1.75rem;
+  --font-size-h2-mobile: 1.375rem;
+  --font-size-h3: 1.65rem;
+  --font-size-h3-mobile: 1.375rem;
+  --font-size-h4: 1rem;
+  --font-size-h5: 1rem;
+  --font-size-h6: 1rem;
+
+  --base-line-height: 1.47;
+  --line-height-heading: 1.2;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+  --font-weight-heading: 500;
+
+  --spacing-1: 10px;
+  --spacing-2: 20px;
+  --spacing-3: 30px;
+  --spacing-4: 40px;
+  --spacing-5: 50px;
+  --spacing-6: 60px;
+  --spacing-7: 70px;
+  --spacing-8: 80px;
+  --spacing-9: 90px;
+  --spacing-10: 100px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-heading);
+  margin-top: 0;
+  margin-bottom: 0.4em;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
+}
+
+h5 {
+  font-size: var(--font-size-h5);
+}
+
+h6 {
+  font-size: var(--font-size-h6);
+}
+
+a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-2);
+  font-family: "Roboto Mono", monospace;
+}
+
+.header-wrapper {
+  background-color: #000;
+}
+
+.header-wrapper-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--spacing-4) var(--spacing-2);
+}
+
+.header-wrapper-inner a {
+  font-family: "Roboto Mono", monospace;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.listed-post {
+  margin: var(--spacing-2) 0;
+  padding: var(--spacing-2);
+}
+
+.listed-post:nth-child(even),
+.listed-post:nth-child(even) a {
+  color: #fff;
+  background-color: #000;
+}
+
+

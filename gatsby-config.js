@@ -4,7 +4,18 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+// In your gatsby-config.js
 module.exports = {
-  /* Your site config here */
-  plugins: []
+  plugins: [
+    {
+      resolve: "gatsby-source-wordpress",
+      options: {
+        baseUrl: "http://localhost/wpheadless",
+        protocol: "http",
+        useACF: false,
+        hostingWPCOM: false,
+        includedRoutes: ["**/categories", "**/posts", "**/pages"],
+      },
+    },
+  ],
 }

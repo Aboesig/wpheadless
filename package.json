@@ -14,7 +14,10 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
-    "gatsby": "^2.20.12",
+    "@babel/polyfill": "^7.8.7",
+    "@wordpress/block-library": "^2.16.0",
+    "gatsby": "2.20.20",
+    "gatsby-source-wordpress": "^3.2.3",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
