@@ -112,12 +112,12 @@ a {
 
 .listed-post {
   margin: var(--spacing-2) 0;
+  padding: var(--spacing-2);
 }
 
 .listed-post:nth-child(even) {
   color: #fff;
   background-color: #000;
-  padding: var(--spacing-2);
 }
 
 .listed-post:nth-child(even) a {
