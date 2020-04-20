@@ -7,7 +7,7 @@ const Layout = ({ children }) => (
   <>
     <header className="header-wrapper">
       <div className="header-wrapper-inner">
-        <Link to="/">The headless way</Link>
+        <Link to="/">Peytz & Co</Link>
       </div>
     </header>
     <main className="container">
