@@ -10,8 +10,8 @@ module.exports = {
     {
       resolve: "gatsby-source-wordpress",
       options: {
-        baseUrl: "http://localhost/wpheadless",
-        protocol: "http",
+        baseUrl: "https://headlesswp.wp.prod.ng.peytz.dk",
+        protocol: "https",
         useACF: false,
         hostingWPCOM: false,
         includedRoutes: ["**/categories", "**/posts", "**/pages"],
