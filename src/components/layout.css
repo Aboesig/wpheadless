@@ -123,3 +123,7 @@ a {
 .listed-post:nth-child(even) a {
   color: #fff;
 }
+
+.post-template {
+  padding-top: var(--spacing-5);
+}
