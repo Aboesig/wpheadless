@@ -15,6 +15,23 @@ module.exports = {
         useACF: false,
         hostingWPCOM: false,
         includedRoutes: ["**/categories", "**/posts", "**/pages"],
+        plugins: [
+          {
+            resolve: `gatsby-plugin-sharp`,
+            options: {
+              useMozJpeg: false,
+              stripMetadata: true,
+              defaultQuality: 75,
+            },
+          },
+          {
+            resolve: `gatsby-wordpress-inline-images`,
+            options: {
+              baseUrl: `https://headlesswp.wp.prod.ng.peytz.dk/wordpress`,
+              protocol: `https`,
+            },
+          },
+        ],
       },
     },
   ],
