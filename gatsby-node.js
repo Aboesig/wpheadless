@@ -10,8 +10,9 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
-            path
             slug
+            status
+            template
           }
         }
       }
@@ -19,8 +20,10 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             id
-            path
             slug
+            status
+            template
+            format
           }
         }
       }
@@ -28,7 +31,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   if (result.errors) {
-    throw new Error(result.errors)
+    console.error(result.errors)
   }
 
   const { allWordpressPage, allWordpressPost } = result.data
@@ -37,22 +40,21 @@ exports.createPages = async ({ graphql, actions }) => {
 
   allWordpressPage.edges.forEach(edge => {
     createPage({
-      path: edge.node.title === "forside" ? "/" : edge.node.slug,
+      path: `/${edge.node.slug}/`,
       component: slash(pageTemplate),
       context: {
-        slug: edge.node.slug,
+        id: edge.node.id,
       },
     })
   })
 
   const postTemplate = path.resolve(`./src/templates/post.js`)
-
   allWordpressPost.edges.forEach(edge => {
     createPage({
-      path: edge.node.slug,
+      path: `/${edge.node.slug}/`,
       component: slash(postTemplate),
       context: {
-        slug: edge.node.slug,
+        id: edge.node.id,
       },
     })
   })

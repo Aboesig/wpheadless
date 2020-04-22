@@ -1,28 +1,35 @@
-import React from "react"
-import Layout from "../components/layout"
+
+import React, { Component } from "react"
 import { graphql } from "gatsby"
+import Layout from "../components/layout"
 
-export default ({ data }) => {
-  const page = data.allWordpressPage.edges[0].node
+class Page extends Component {
+  render() {
+    const StaticPage = this.props.data.wordpressPage
 
-  return (
-    <Layout>
-      <div>
-        <h1>{page.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: page.content }} />
-      </div>
-    </Layout>
-  )
+    return (
+      <Layout>
+        <div className="post-template">
+          <div dangerouslySetInnerHTML={{ __html: StaticPage.title }} />
+          <div dangerouslySetInnerHTML={{ __html: StaticPage.content }} />
+        </div>
+      </Layout>
+    )
+  }
 }
 
-export const query = graphql`
-  query($slug: String!) {
-    allWordpressPage(filter: { slug: { eq: $slug } }) {
-      edges {
-        node {
-          title
-          content
-        }
+export default Page
+
+export const pageQuery = graphql`
+  query($id: String!) {
+    wordpressPage(id: { eq: $id }) {
+      title
+      content
+    }
+    site {
+      id
+      siteMetadata {
+        title
       }
     }
   }

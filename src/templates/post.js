@@ -1,28 +1,39 @@
-import React from "react"
-import Layout from "../components/layout"
+import React, { Component } from "react"
 import { graphql } from "gatsby"
+import PropTypes from "prop-types"
+import Layout from "../components/layout"
 
-export default ({ data }) => {
-  const post = data.allWordpressPost.edges[0].node
+class Post extends Component {
+  render() {
+    const post = this.props.data.wordpressPost
 
-  return (
-    <Layout>
-      <div className="post-template">
-        <h1>{post.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: post.content }} />
-      </div>
-    </Layout>
-  )
+    return (
+      <Layout>
+        <div className="post-template">
+          <div dangerouslySetInnerHTML={{ __html: post.title }} />
+          <div dangerouslySetInnerHTML={{ __html: post.content }} />
+        </div>
+      </Layout>
+    )
+  }
 }
 
-export const query = graphql`
-  query($slug: String!) {
-    allWordpressPost(filter: { slug: { eq: $slug } }) {
-      edges {
-        node {
-          title
-          content
-        }
+Post.propTypes = {
+  data: PropTypes.object.isRequired,
+  edges: PropTypes.array,
+}
+
+export default Post
+
+export const postQuery = graphql`
+  query($id: String!) {
+    wordpressPost(id: { eq: $id }) {
+      title
+      content
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }
