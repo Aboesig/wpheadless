@@ -6,33 +6,21 @@
 
 // In your gatsby-config.js
 module.exports = {
+  siteMetadata: {
+    title: "Peytz & Co.",
+  },
   plugins: [
     {
-      resolve: "gatsby-source-wordpress",
+      resolve: `gatsby-source-wordpress`,
       options: {
-        baseUrl: "https://headlesswp.wp.prod.ng.peytz.dk",
-        protocol: "https",
-        useACF: false,
+        baseUrl: `https://headlesswp.wp.prod.ng.peytz.dk`,
+        protocol: `https`,
         hostingWPCOM: false,
+        useACF: false,
         includedRoutes: ["**/categories", "**/posts", "**/pages"],
-        plugins: [
-          {
-            resolve: `gatsby-plugin-sharp`,
-            options: {
-              useMozJpeg: false,
-              stripMetadata: true,
-              defaultQuality: 75,
-            },
-          },
-          {
-            resolve: `gatsby-wordpress-inline-images`,
-            options: {
-              baseUrl: `https://headlesswp.wp.prod.ng.peytz.dk/wordpress`,
-              protocol: `https`,
-            },
-          },
-        ],
       },
     },
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-sharp",
   ],
 }
