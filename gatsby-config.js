@@ -6,21 +6,14 @@
 
 // In your gatsby-config.js
 module.exports = {
-  siteMetadata: {
-    title: "Peytz & Co.",
-  },
-  plugins: [
-    {
-      resolve: `gatsby-source-wordpress`,
-      options: {
-        baseUrl: `https://headlesswp.wp.prod.ng.peytz.dk`,
-        protocol: `https`,
-        hostingWPCOM: false,
-        useACF: false,
-        includedRoutes: ["**/categories", "**/posts", "**/pages"],
-      },
-    },
-    "gatsby-transformer-sharp",
-    "gatsby-plugin-sharp",
-  ],
+    plugins: [
+        {
+            resolve: "gatsby-source-graphql",
+            options: {
+                typeName: "WPGraphQL",
+                fieldName: "wpgraphql",
+                url: "http://localhost/wpheadless/graphql",
+            },
+        },
+    ],
 }

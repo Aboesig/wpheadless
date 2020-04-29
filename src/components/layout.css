@@ -111,6 +111,7 @@ a {
 }
 
 .listed-post {
+  display: block;
   margin: var(--spacing-2) 0;
   padding: var(--spacing-2);
 }

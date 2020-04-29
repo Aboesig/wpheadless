@@ -1,61 +1,39 @@
-const path = require(`path`)
-const { slash } = require(`gatsby-core-utils`)
-
-exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
-
-  const result = await graphql(`
-    {
-      allWordpressPage {
-        edges {
-          node {
+exports.createPages = async ({ actions, graphql }) => {
+    const GET_PAGES = `
+    query {
+      wpgraphql {
+        pages {
+          nodes {
+            uri
             id
-            slug
-            status
-            template
+            isFrontPage
           }
         }
-      }
-      allWordpressPost {
-        edges {
-          node {
+        posts {
+          nodes {
+            uri
             id
-            slug
-            status
-            template
-            format
           }
         }
       }
     }
-  `)
+  `
 
-  if (result.errors) {
-    console.error(result.errors)
-  }
+    const result = await graphql(GET_PAGES)
 
-  const { allWordpressPage, allWordpressPost } = result.data
-
-  const pageTemplate = path.resolve(`./src/templates/page.js`)
-
-  allWordpressPage.edges.forEach(edge => {
-    createPage({
-      path: `/${edge.node.slug}/`,
-      component: slash(pageTemplate),
-      context: {
-        id: edge.node.id,
-      },
+    result.data.wpgraphql.pages.nodes.forEach(page => {
+        actions.createPage({
+            path: page.isFrontPage ? "/" : page.uri,
+            component: require.resolve("./src/templates/page.js"),
+            context: { id: page.id },
+        })
     })
-  })
 
-  const postTemplate = path.resolve(`./src/templates/post.js`)
-  allWordpressPost.edges.forEach(edge => {
-    createPage({
-      path: `/${edge.node.slug}/`,
-      component: slash(postTemplate),
-      context: {
-        id: edge.node.id,
-      },
+    result.data.wpgraphql.posts.nodes.forEach(post => {
+        actions.createPage({
+            path: `blog/${post.uri}`,
+            component: require.resolve("./src/templates/post.js"),
+            context: { id: post.id },
+        })
     })
-  })
 }

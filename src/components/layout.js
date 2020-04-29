@@ -1,19 +1,38 @@
-import React from "react";
-import { Link } from "gatsby";
-import "./layout.css"
-import '@wordpress/block-library/build-style/style.css';
+import React from "react"
+import { graphql, Link, useStaticQuery } from "gatsby"
 
-const Layout = ({ children }) => (
-  <>
-    <header className="header-wrapper">
-      <div className="header-wrapper-inner">
-        <Link to="/">Peytz & Co</Link>
-      </div>
-    </header>
-    <main className="container">
-      {children}
-    </main>
-  </>
-)
+import "@wordpress/block-library/build-style/style.css"
+import "@wordpress/block-library/build-style/theme.css"
 
-export default Layout;
+const Layout = ({ children }) => {
+  const menu = useStaticQuery(graphql`
+    query {
+      wpgraphql {
+        menus {
+          nodes {
+            menuItems {
+              nodes {
+                url
+                label
+              }
+            }
+          }
+        }
+        generalSettings {
+          url
+        }
+      }
+    }
+  `)
+
+  return (
+    <>
+      <header>
+        <Link to="/">My Jamstack WordPress Site</Link>
+      </header>
+      <main>{children}</main>
+    </>
+  )
+}
+
+export default Layout
